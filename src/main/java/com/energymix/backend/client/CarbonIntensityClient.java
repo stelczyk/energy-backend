@@ -21,13 +21,12 @@ public class CarbonIntensityClient {
                 .build();
     }
 
-    public List<GenerationInterval> getGeneration(String from, String to){
+    public List<GenerationInterval> getGeneration(String from, String to) {
         GenerationResponse response = restClient.get()
-                .uri("/generation/{from}/{to}", from,to)
+                .uri("/generation/" + from + "/" + to)
                 .retrieve()
                 .body(GenerationResponse.class);
+
         return response.data();
     }
-
-
 }
