@@ -72,7 +72,7 @@ public class EnergyService{
         int bestStart = 0;
         double bestClean = 0;
 
-        for(int i = 0; i<intervals.size() - windowSize; i++){
+        for(int i = 0; i <= intervals.size() - windowSize; i++){
             List<GenerationInterval> window = intervals.subList(i, i+windowSize);
 
             double cleanPercent = window.stream()
