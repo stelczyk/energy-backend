@@ -6,7 +6,6 @@ Spring Boot REST API providing energy generation mix data for Great Britain and 
 
 - **Energy Mix:** https://energy-backend-8wur.onrender.com/api/energy-mix
 - **Optimal Window (3h):** https://energy-backend-8wur.onrender.com/api/optimal-window?hours=3
-- **Swagger UI:** https://energy-backend-8wur.onrender.com/swagger-ui/index.html
 - **Frontend:** https://energy-frontend-zawz.onrender.com
 
 > First request may take up to 60 seconds (free Render instance).
