@@ -1,5 +1,6 @@
 package com.energymix.backend.client;
 
+import com.energymix.backend.exception.ExternalApiException;
 import com.energymix.backend.model.GenerationInterval;
 import com.energymix.backend.model.GenerationResponse;
 import org.springframework.stereotype.Component;
@@ -22,11 +23,21 @@ public class CarbonIntensityClient {
     }
 
     public List<GenerationInterval> getGeneration(String from, String to) {
-        GenerationResponse response = restClient.get()
-                .uri("/generation/" + from + "/" + to)
-                .retrieve()
-                .body(GenerationResponse.class);
+        try {
+            GenerationResponse response = restClient.get()
+                    .uri("/generation/" + from + "/" + to)
+                    .retrieve()
+                    .body(GenerationResponse.class);
 
-        return response.data();
+            if (response == null || response.data() == null) {
+                throw new ExternalApiException("Received empty data from Carbon Intensity API");
+            }
+
+            return response.data();
+        } catch (ExternalApiException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new ExternalApiException("Failed to fetch generation data: " + e.getMessage());
+        }
     }
 }
